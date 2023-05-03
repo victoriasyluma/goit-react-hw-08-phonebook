@@ -7298,7 +7298,7 @@
     "strip-ansi" "^6.0.1"
     "text-table" "^0.2.0"
 
-"react-dom@*", "react-dom@^16.8 || ^17.0 || ^18.0", "react-dom@^18.1.0":
+"react-dom@*", "react-dom@^16.8 || ^17.0 || ^18.0", "react-dom@^18.1.0", "react-dom@>=16.8":
   "integrity" "sha512-fU1Txz7Budmvamp7bshe4Zi32d0ll7ect+ccxNu9FlObT605GOEB8BfO4tmRJ39R5Zj831VCpvQ05QPBW5yb+w=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.1.0.tgz"
   "version" "18.1.0"
@@ -7348,7 +7348,15 @@
   "resolved" "https://registry.npmjs.org/react-refresh/-/react-refresh-0.11.0.tgz"
   "version" "0.11.0"
 
-"react-router@^6.11.0":
+"react-router-dom@^6.11.0":
+  "integrity" "sha512-Q3mK1c/CYoF++J6ZINz7EZzwlgSOZK/kc7lxIA7PhtWhKju4KfF1WHqlx0kVCIFJAWztuYVpXZeljEbds8z4Og=="
+  "resolved" "https://registry.npmjs.org/react-router-dom/-/react-router-dom-6.11.0.tgz"
+  "version" "6.11.0"
+  dependencies:
+    "@remix-run/router" "1.6.0"
+    "react-router" "6.11.0"
+
+"react-router@^6.11.0", "react-router@6.11.0":
   "integrity" "sha512-hTm6KKNpj9SDG4syIWRjCU219O0RZY8RUPobCFt9p+PlF7nnkRgMoh2DieTKvw3F3Mw6zg565HGnSv8BuoY5oQ=="
   "resolved" "https://registry.npmjs.org/react-router/-/react-router-6.11.0.tgz"
   "version" "6.11.0"

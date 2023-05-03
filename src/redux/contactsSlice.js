@@ -10,7 +10,7 @@ const initialState = {
   filter: '',
 };
 
-const contactsSlice = createSlice({
+export const contactsSlice = createSlice({
   name: 'contactsState',
   initialState,
 
