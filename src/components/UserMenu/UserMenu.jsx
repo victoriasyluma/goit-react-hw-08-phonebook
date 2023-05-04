@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutThunk } from '../../redux/Auth/AuthOperation';
 import { selectAuthUser, selectIsOnline } from '../../redux/Auth/AuthSelector';
+import styles from './UserMenu.module.scss';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -13,14 +14,18 @@ export const UserMenu = () => {
   };
 
   return isOnline ? (
-    <div>
+    <div className={styles.container}>
       <p>Hello, {name}</p>
       <button onSubmit={handleLogout}></button>
     </div>
   ) : (
-    <div>
-      <NavLink to="/login">Login</NavLink>
-      <NavLink to="/register">Register</NavLink>
+    <div className={styles.user_menu}>
+      <NavLink className={styles.login} to="/login">
+        Login
+      </NavLink>
+      <NavLink className={styles.register} to="/register">
+        Register
+      </NavLink>
     </div>
   );
 };

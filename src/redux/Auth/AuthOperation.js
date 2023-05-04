@@ -6,6 +6,7 @@ const BASE = 'https://connections-api.herokuapp.com';
 const setToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
+
 const clearToken = () => {
   axios.defaults.headers.common.Authorization = ``;
 };
@@ -17,6 +18,7 @@ export const registrationThunk = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post('users/signup', credentials);
+
       setToken(res.data.token);
       return res.data;
     } catch (error) {
@@ -60,9 +62,11 @@ export const refreshThunk = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const savedToken = thunkAPI.getState().auth.token;
+
     if (savedToken === null) {
       return thunkAPI.rejectWithValue('Token is not find');
     }
+
     try {
       setToken(savedToken);
       const res = await axios.get('/users/current');

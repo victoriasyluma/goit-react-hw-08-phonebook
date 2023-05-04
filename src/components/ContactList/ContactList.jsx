@@ -8,8 +8,6 @@ import { getContacts, getFilter } from 'redux/selector';
 import { useSelector } from 'react-redux';
 
 export const ContactList = () => {
-  const { items: contacts } = useSelector(getContacts);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,7 +41,7 @@ export const ContactList = () => {
     page * pageLimit
   );
 
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     dispatch(deleteContact(id));
   };
 
@@ -63,7 +61,7 @@ export const ContactList = () => {
       <div className={styles.pagination}>
         <button
           onClick={() =>
-            setPagination(prev => ({ ...prev, page: prev.page - 1 }))
+            setPagination((prev) => ({ ...prev, page: prev.page - 1 }))
           }
           disabled={page === 1}
         >
@@ -72,7 +70,7 @@ export const ContactList = () => {
 
         <button
           onClick={() =>
-            setPagination(prev => ({ ...prev, page: prev.page + 1 }))
+            setPagination((prev) => ({ ...prev, page: prev.page + 1 }))
           }
           disabled={page === Math.ceil(items.length / 10)}
         >
@@ -82,3 +80,5 @@ export const ContactList = () => {
     </div>
   );
 };
+
+export default ContactList;

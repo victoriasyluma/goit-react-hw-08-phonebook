@@ -10,11 +10,12 @@ const initialState = {
   user: { name: null, email: null, password: null },
   token: null,
   isLoggedIn: false,
-  isFetchingCurrentUser: false,
+  isRefreshing: true,
   error: null,
+  isOnline: false,
 };
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {},
@@ -32,6 +33,7 @@ export const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
+
     [loginThunk.rejected]: (state, action) => {
       state.error = action.payload;
     },
@@ -46,11 +48,13 @@ export const authSlice = createSlice({
     [refreshThunk.fulfilled]: (state, action) => {
       state.user = action.payload;
       state.isLoggedIn = true;
+      state.isRefreshing = false;
     },
     [refreshThunk.rejected]: (state, action) => {
       state.error = action.payload;
+      state.isRefreshing = false;
     },
   },
 });
 
-export default authSlice.reducer;
+export const authReducer = authSlice.reducer;

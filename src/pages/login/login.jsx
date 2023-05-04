@@ -1,9 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk } from '../../redux/Auth/AuthOperation';
+import styles from './login.module.scss';
+import { Layout } from '../../components/Layout/Layout';
+// import { selectAuthIsLoading } from '../../redux/Auth/AuthSelector';
+// import { RotatingLines } from 'react-loader-spinner';
 
 export const Login = () => {
   const dispatch = useDispatch();
+
+  // const isLoading = useSelector(selectAuthIsLoading);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,14 +24,42 @@ export const Login = () => {
   // add validation for error and loading state
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h1>Login page</h1>
-        <input name="email" type="email" placeholder="Email..." />
-        <input name="password" type="password" placeholder="Password..." />
-      </form>
-    </div>
+    // <>
+    //   {isLoading ? (
+    //     <RotatingLines
+    //       strokeColor="grey"
+    //       strokeWidth="5"
+    //       animationDuration="0.75"
+    //       width="96"
+    //       visible={true}
+    //     />
+    // ) : (
+    <>
+      <Layout />
+      <div className={styles.login}>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <h1>Login page</h1>
+          <input
+            className={styles.name}
+            name="email"
+            type="email"
+            placeholder="Email..."
+          />
+          <input
+            className={styles.password}
+            name="password"
+            type="password"
+            placeholder="Password..."
+          />
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </>
   );
 };
+// </>
+//   );
+// };
 
 export default Login;
