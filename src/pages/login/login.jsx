@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loginThunk } from '../../redux/Auth/AuthOperation';
 import styles from './login.module.scss';
 import { Layout } from '../../components/Layout/Layout';
