@@ -3,8 +3,11 @@ import { useState } from 'react';
 import styles from './ContactList.module.scss';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteContact, fetchContacts } from '../../redux/operations';
-import { getContacts, getFilter } from 'redux/selector';
+import {
+  deleteContact,
+  fetchContacts,
+} from '../../redux/AuthContacts/operations';
+import { getContacts, getFilter } from 'redux/AuthContacts/selector';
 import { useSelector } from 'react-redux';
 
 export const ContactList = () => {

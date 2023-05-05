@@ -1,6 +1,6 @@
 import styles from './ContactForm.module.scss';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/operations';
+import { addContact } from 'redux/AuthContacts/operations';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
