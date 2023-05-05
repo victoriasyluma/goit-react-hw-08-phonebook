@@ -10,6 +10,7 @@ export const Layout = () => {
         <Navigation className={styles.navigation} />
         <UserMenu className={styles.user_menu} />
       </header>
+
       <main>
         <Outlet />
       </main>

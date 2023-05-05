@@ -12,14 +12,18 @@ export const UserMenu = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { name } = useSelector(selectAuthUser);
+
   const handleLogout = () => {
     dispatch(logoutThunk());
   };
 
   return isLoggedIn ? (
     <div className={styles.container}>
-      <p>Hello, {name}</p>
-      <button onSubmit={handleLogout}></button>
+      <p className={styles.name}>Hello, {name}</p>
+      <button className={styles.logout_button} onSubmit={handleLogout}>
+        {' '}
+        Logout
+      </button>
     </div>
   ) : (
     <div className={styles.user_menu}>

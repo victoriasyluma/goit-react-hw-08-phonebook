@@ -46,38 +46,38 @@ export const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
 
-        <Route index element={<Home />} />
+          <Route
+            path="/register"
+            element={
+              <NoLoggedInRoute>
+                <Register />
+              </NoLoggedInRoute>
+            }
+          />
 
-        <Route
-          path="/register"
-          element={
-            <NoLoggedInRoute>
-              <Register />
-            </NoLoggedInRoute>
-          }
-        />
+          <Route
+            path="/login"
+            element={
+              <NoLoggedInRoute>
+                <Login />
+              </NoLoggedInRoute>
+            }
+          />
 
-        <Route
-          path="/login"
-          element={
-            <NoLoggedInRoute>
-              <Login />
-            </NoLoggedInRoute>
-          }
-        />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute>
+                <Contacts />
+              </PrivateRoute>
+            }
+          />
 
-        <Route
-          path="/contacts"
-          element={
-            <PrivateRoute>
-              <Contacts />
-            </PrivateRoute>
-          }
-        />
-
-        <Route path="*" element={isLoggedIn ? <Contacts /> : <Login />} />
+          <Route path="*" element={isLoggedIn ? <Contacts /> : <Login />} />
+        </Route>
       </Routes>
     </>
   );
