@@ -13,16 +13,10 @@ import { refreshThunk } from './redux/Auth/AuthOperation';
 import {
   selectIsRefreshing,
   selectIsLoggedIn,
-  selectAuthError,
 } from './redux/Auth/AuthSelector';
-import { useLocation } from 'react-router-dom';
 
 export const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const location = useLocation();
-
-  const isAuthError = useSelector(selectAuthError);
-  const isUserRegistrate = location.pathname === '/';
 
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
