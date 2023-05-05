@@ -23,11 +23,11 @@ export const ContactList = () => {
     pageLimit: 10,
   }));
 
-  const filteredContacts = items.filter(({ name, phone }) => {
+  const filteredContacts = items.filter(({ name, number }) => {
     if (!filter) return true;
 
     const sanitizedFilter = filter.toLowerCase();
-    const values = [`${name.toLowerCase()}:`, phone.toLowerCase()];
+    const values = [`${name.toLowerCase()}:`, number.toLowerCase()];
 
     return (
       values.some((value = '') => {
@@ -50,9 +50,9 @@ export const ContactList = () => {
       {isLoading && <h1>Loading...</h1>}
 
       <ul>
-        {paginatedItems.map(({ name, phone, id }) => (
+        {paginatedItems.map(({ name, number, id }) => (
           <li key={id}>
-            {name}: {phone}
+            {name}: {number}
             <button onClick={() => handleDelete(id)}>Delete</button>
           </li>
         ))}

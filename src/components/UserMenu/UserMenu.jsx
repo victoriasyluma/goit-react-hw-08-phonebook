@@ -17,22 +17,25 @@ export const UserMenu = () => {
     dispatch(logoutThunk());
   };
 
-  return isLoggedIn ? (
+  if (!isLoggedIn) {
+    return (
+      <div className={styles.user_menu}>
+        <NavLink className={styles.login} to="/login">
+          Login
+        </NavLink>
+        <NavLink className={styles.register} to="/register">
+          Register
+        </NavLink>
+      </div>
+    );
+  }
+
+  return (
     <div className={styles.container}>
       <p className={styles.name}>Hello, {name}</p>
-      <button className={styles.logout_button} onSubmit={handleLogout}>
-        {' '}
+      <button className={styles.logout_button} onClick={handleLogout}>
         Logout
       </button>
-    </div>
-  ) : (
-    <div className={styles.user_menu}>
-      <NavLink className={styles.login} to="/login">
-        Login
-      </NavLink>
-      <NavLink className={styles.register} to="/register">
-        Register
-      </NavLink>
     </div>
   );
 };

@@ -1,8 +1,10 @@
 .container {
-  display: flex;
-  align-items: center;
 }
 
+.user_menu {
+  display: flex;
+  gap: 20px;
+}
 .name {
   margin-right: 20px;
   color: white;
@@ -27,16 +29,7 @@
   }
 }
 
-.user_menu {
-  margin: 0 auto;
-  display: flex;
-}
-
 .login {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -49,10 +42,6 @@
 }
 
 .register {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

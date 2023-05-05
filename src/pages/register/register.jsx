@@ -18,9 +18,8 @@ export const Register = () => {
   };
   return (
     <>
-      <Layout />
       <div className={styles.div}>
-        <form onSubmit={handleSubmit} className={styles.register}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <h1>Register page</h1>
           <input
             className={styles.name}

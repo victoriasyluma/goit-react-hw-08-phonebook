@@ -22,9 +22,7 @@ export const registrationThunk = createAsyncThunk(
       setToken(res.data.token);
       return res.data;
     } catch (error) {
-      const { message, code, response } = error;
-      const serializableError = { message, code, response };
-      return thunkAPI.rejectWithValue(serializableError);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -37,9 +35,7 @@ export const loginThunk = createAsyncThunk(
       console.log(res);
       return res.data;
     } catch (error) {
-      const { message, code, response } = error;
-      const serializableError = { message, code, response };
-      return thunkAPI.rejectWithValue(serializableError);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -51,9 +47,7 @@ export const logoutThunk = createAsyncThunk(
       await axios.post('users/logout');
       clearToken();
     } catch (error) {
-      const { message, code, response } = error;
-      const serializableError = { message, code, response };
-      return thunkAPI.rejectWithValue(serializableError);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
