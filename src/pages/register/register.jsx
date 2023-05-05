@@ -2,8 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { registrationThunk } from '../../redux/Auth/AuthOperation';
 import styles from './register.module.scss';
-import { Layout } from '../../components/Layout/Layout';
-// import { selectAuthIsLoading } from '../../redux/Auth/AuthSelector';
 
 export const Register = () => {
   const dispatch = useDispatch();
