@@ -2,18 +2,21 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutThunk } from '../../redux/Auth/AuthOperation';
-import { selectAuthUser, selectIsOnline } from '../../redux/Auth/AuthSelector';
+import {
+  selectAuthUser,
+  selectIsLoggedIn,
+} from '../../redux/Auth/AuthSelector';
 import styles from './UserMenu.module.scss';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
-  const isOnline = useSelector(selectIsOnline);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const { name } = useSelector(selectAuthUser);
   const handleLogout = () => {
     dispatch(logoutThunk());
   };
 
-  return isOnline ? (
+  return isLoggedIn ? (
     <div className={styles.container}>
       <p>Hello, {name}</p>
       <button onSubmit={handleLogout}></button>

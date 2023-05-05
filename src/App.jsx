@@ -5,14 +5,25 @@ import { Register } from './pages/register/register';
 import { Login } from './pages/login/login';
 import { Home } from './pages/Home/Home';
 import { PrivateRoute } from './HOC/PriviteRoute';
-import { PublicRoute } from './HOC/PublickRoute';
+import { NoLoggedInRoute } from './HOC/NoLoggedInRoute';
 import { RotatingLines } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { refreshThunk } from './redux/Auth/AuthOperation';
-import { selectIsRefreshing } from './redux/Auth/AuthSelector';
+import {
+  selectIsRefreshing,
+  selectIsLoggedIn,
+  selectAuthError,
+} from './redux/Auth/AuthSelector';
+import { useLocation } from 'react-router-dom';
 
 export const App = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const location = useLocation();
+
+  const isAuthError = useSelector(selectAuthError);
+  const isUserRegistrate = location.pathname === '/';
+
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
 
@@ -20,34 +31,40 @@ export const App = () => {
     dispatch(refreshThunk());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <RotatingLines
-      strokeColor="grey"
-      strokeWidth="5"
-      animationDuration="0.75"
-      width="96"
-      visible={true}
-    />
-  ) : (
+  if (isRefreshing) {
+    return (
+      <RotatingLines
+        strokeColor="grey"
+        strokeWidth="5"
+        animationDuration="0.75"
+        width="96"
+        visible={true}
+      />
+    );
+  }
+
+  return (
     <>
       <Routes>
         <Route path="/" element={<Layout />} />
+
         <Route index element={<Home />} />
+
         <Route
           path="/register"
           element={
-            <PublicRoute>
+            <NoLoggedInRoute>
               <Register />
-            </PublicRoute>
+            </NoLoggedInRoute>
           }
         />
 
         <Route
           path="/login"
           element={
-            <PublicRoute>
+            <NoLoggedInRoute>
               <Login />
-            </PublicRoute>
+            </NoLoggedInRoute>
           }
         />
 
@@ -59,17 +76,9 @@ export const App = () => {
             </PrivateRoute>
           }
         />
+
+        <Route path="*" element={isLoggedIn ? <Contacts /> : <Login />} />
       </Routes>
     </>
   );
 };
-
-//  <>
-//     <Routes>
-//       <Route path="/" element={<Layout />} />
-//       <Route index element={<Home />} />
-//       <Route path="/register" element={<Register />} />
-//       <Route path="/login" element={<Login />} />
-//       <Route path="/contacts" element={<Contacts />} />
-//     </Routes>
-//   </>

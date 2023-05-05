@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import {
   registrationThunk,
   loginThunk,
@@ -12,7 +13,6 @@ const initialState = {
   isLoggedIn: false,
   isRefreshing: true,
   error: null,
-  isOnline: false,
 };
 
 const authSlice = createSlice({
@@ -20,36 +20,60 @@ const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    /**
+     * Registration
+     */
     [registrationThunk.fulfilled]: (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      const { user, token } = action.payload;
+
+      state.user = user;
+      state.token = token;
+
       state.isLoggedIn = true;
     },
+
     [registrationThunk.rejected]: (state, action) => {
       state.error = action.payload;
     },
+
+    /**
+     * Login
+     */
     [loginThunk.fulfilled]: (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      const { user, token } = action.payload;
+
+      state.user = user;
+      state.token = token;
+
       state.isLoggedIn = true;
     },
 
     [loginThunk.rejected]: (state, action) => {
       state.error = action.payload;
     },
+
+    /**
+     * Logout
+     */
     [logoutThunk.fulfilled]: (state, action) => {
       state.user = { name: null, email: null, password: null };
       state.token = null;
       state.isLoggedIn = false;
     },
+
     [logoutThunk.rejected]: (state, action) => {
       state.error = action.payload;
     },
+
+    /**
+     * Refresh token from persisted
+     */
     [refreshThunk.fulfilled]: (state, action) => {
       state.user = action.payload;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
+
     [refreshThunk.rejected]: (state, action) => {
       state.error = action.payload;
       state.isRefreshing = false;

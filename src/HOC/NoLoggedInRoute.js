@@ -1,13 +1,18 @@
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
-import { selectIsOnline } from '../redux/Auth/AuthSelector';
+import { selectIsLoggedIn } from '../redux/Auth/AuthSelector';
 
-export const PublicRoute = ({ children }) => {
+/**
+ * Wrapper for not logged in pages, like register and login.
+ */
+export const NoLoggedInRoute = ({ children }) => {
   const location = useLocation();
-  const isOnline = useSelector(selectIsOnline);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const fromPage = location.state?.from.pathname || '/';
-  if (isOnline) {
+
+  if (isLoggedIn) {
     return <Navigate to={fromPage} />;
   }
+
   return children;
 };
